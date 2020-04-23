@@ -31,6 +31,24 @@ class RestauranteDB {
 
     private var dishSelected: Dish!
     
+    func dishInfo(forId id:Int) -> DishInfo {
+        let d = DishInfo()
+        let fr = NSFetchRequest<NSFetchRequestResult>(entityName: "\(Dish.self)")
+        fr.predicate = NSPredicate(format: "id = %d", id)
+        do {
+            let results = try moctx.fetch(fr) as! [Dish]
+            if let firstDish = results.first {
+                dishSelected = firstDish
+                firstDish.toDishInfo(d)
+            }
+        } catch {
+            print("\(RestauranteDB.self) \(#function) ERROR")
+            print(error.localizedDescription)
+        }
+        print(d.descr())
+        return d
+    }
+    
     private lazy var dishNames:[String]? = {
         let fr = NSFetchRequest<NSFetchRequestResult>(entityName: "\(Dish.self)")
         let sortDescr = NSSortDescriptor(key: "id", ascending: true)

@@ -64,7 +64,6 @@
                             </pickerView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Kef-ic-4bq">
                                 <rect key="frame" x="16" y="20" width="343" height="189"/>
-                                <color key="backgroundColor" systemColor="systemGray6Color" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xeW-77-vle">
                                 <rect key="frame" x="16" y="617" width="158.5" height="30"/>
@@ -79,7 +78,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" red="1" green="0.93638359717095621" blue="0.84982944542253525" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="d0n-yX-c04" firstAttribute="top" secondItem="vAj-6g-2fs" secondAttribute="bottom" constant="20" id="4Za-xg-fuK"/>
                             <constraint firstItem="LDL-sp-Qp2" firstAttribute="trailing" secondItem="s1n-5S-03W" secondAttribute="trailing" constant="16" id="7F1-w3-iPc"/>

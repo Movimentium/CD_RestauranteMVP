@@ -24,21 +24,19 @@ class RestaurantePresenter {
         return db.dishName(at: i)
     }
     
-    func didSelect(dishIndex i:Int) {
-        
+    func didSelect(dishId i:Int) {
+        let dishInfo = db.dishInfo(forId: i)
+        viewInterface?.update(withDish: dishInfo)
     }
     
-    func dishImageName(at i:Int) -> String {
-        return "TODO"
-    }
+ 
     
     func strDate(fromDate d:Date?) -> String {
         guard let date = d else {
             return "?"
         }
         let dateForm = DateFormatter()
-        dateForm.dateStyle = .medium
-        dateForm.timeStyle = .short
+        dateForm.dateFormat = "dd/MM/YYYY HH:mm"
         return dateForm.string(from: date)
     }
 }

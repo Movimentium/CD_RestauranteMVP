@@ -59,3 +59,17 @@ extension TintColor {
         """
     }
 }
+
+extension DishInfo {
+    func descr() -> String {
+        """
+        --------------------------
+        name: \(String(describing: name))
+        tintColor:
+        lastEaten: \(String(describing: lastEaten))
+        timesEaten: \(timesEaten)
+        rating: \(rating)
+        isFavorite: \(isFavorite)
+        """
+    }
+}

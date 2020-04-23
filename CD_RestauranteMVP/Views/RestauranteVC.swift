@@ -40,7 +40,8 @@ class RestauranteVC: UIViewController, RestauranteViewInterface, UIPickerViewDat
         lblRating.text = "Valoración \(dish.rating)/5"
         lblEaten.text = "Veces degustado: \(dish.timesEaten)"
         lblLastEaten.text = "Última degustación: \(presenter.strDate(fromDate: dish.lastEaten))"
-        lblIsFavourite.isHidden = !dish.isFavorite
+        lblIsFavourite.text = (dish.isFavorite ? "*Favorito*" : "")
+        imgVw.image = UIImage(named: dish.imageName ?? "")
     }
     
     // MARK: - UIPickerViewDataSource
@@ -57,6 +58,6 @@ class RestauranteVC: UIViewController, RestauranteViewInterface, UIPickerViewDat
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         print("\(self.classForCoder) \(#function) row: \(row)")
-        presenter.didSelect(dishIndex: row)
+        presenter.didSelect(dishId: row)
     }
 }

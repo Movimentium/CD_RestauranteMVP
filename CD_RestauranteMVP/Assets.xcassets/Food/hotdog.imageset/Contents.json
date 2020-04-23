@@ -1,11 +1,11 @@
 {
   "images" : [
     {
-      "filename" : "hotdog.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "hotdog.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
