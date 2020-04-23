@@ -9,9 +9,7 @@
 import UIKit
 
 class RestauranteVC: UIViewController, RestauranteViewInterface, UIPickerViewDataSource, UIPickerViewDelegate {
-   
-    
-
+  
     @IBOutlet weak var imgVw: UIImageView!
     @IBOutlet weak var picker: UIPickerView!
     @IBOutlet weak var lblName: UILabel!
@@ -23,14 +21,13 @@ class RestauranteVC: UIViewController, RestauranteViewInterface, UIPickerViewDat
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        presenter.viewInterface =
+        presenter.viewInterface = self
         picker.dataSource = self
         picker.delegate = self
         pickerView(picker, didSelectRow: 0, inComponent: 0)
     }
     
     // MARK: - IBActions
-    
     @IBAction func onRequestBtn() {
     }
     
@@ -38,23 +35,22 @@ class RestauranteVC: UIViewController, RestauranteViewInterface, UIPickerViewDat
     }
     
     // MARK: - RestauranteViewInterface
-    
-    func updateDish(withImageName imageName: String) {
-        
+    func update(withDish dish: DishInfo) {
+        lblName.text = dish.name
+        lblRating.text = "Valoración \(dish.rating)/5"
+        lblEaten.text = "Veces degustado: \(dish.timesEaten)"
+        lblLastEaten.text = "Última degustación: \(presenter.strDate(fromDate: dish.lastEaten))"
+        lblIsFavourite.isHidden = !dish.isFavorite
     }
     
     // MARK: - UIPickerViewDataSource
-
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
+    func numberOfComponents(in pickerView: UIPickerView) -> Int { 1 }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return presenter.numOfDishes
     }
  
     // MARK: - UIPickerViewDelegate
-
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return presenter.dishName(at: row)
     }

@@ -9,7 +9,7 @@
 import Foundation
 
 protocol RestauranteViewInterface: AnyObject {
-    func updateDish(withImageName imageName:String)
+    func update(withDish dish:DishInfo)
 }
 
 class RestaurantePresenter {
@@ -32,4 +32,13 @@ class RestaurantePresenter {
         return "TODO"
     }
     
+    func strDate(fromDate d:Date?) -> String {
+        guard let date = d else {
+            return "?"
+        }
+        let dateForm = DateFormatter()
+        dateForm.dateStyle = .medium
+        dateForm.timeStyle = .short
+        return dateForm.string(from: date)
+    }
 }
