@@ -50,12 +50,19 @@ class RestaurantePresenter {
         }
     }
     
+    func resetDishSelected() {
+        db.resetDishSelected()
+        let dishInfo = db.dishSelectedInfo()
+        viewInterface?.updateRating(with: dishInfo.rating)
+        viewInterface?.updateEatingInfo(withDish: dishInfo)
+    }
+    
     func strDate(fromDate d:Date?) -> String {
         guard let date = d else {
             return "?"
         }
         let dateForm = DateFormatter()
-        dateForm.dateFormat = "dd/MM/YYYY HH:mm"
+        dateForm.dateFormat = "dd/MM/YYYY HH:mm:ss"
         return dateForm.string(from: date)
     }
 }

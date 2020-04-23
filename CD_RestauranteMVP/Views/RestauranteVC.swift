@@ -36,6 +36,10 @@ class RestauranteVC: UIViewController, RestauranteViewInterface, UIPickerViewDat
         showRateAlert()
     }
     
+    @IBAction func onResetBtn() {
+        showResetAlert()
+    }
+    
 
     
     // MARK: - RestauranteViewInterface
@@ -67,6 +71,19 @@ class RestauranteVC: UIViewController, RestauranteViewInterface, UIPickerViewDat
         alertVC.addTextField { (textfield) in
             textfield.keyboardType = .decimalPad
         }
+        present(alertVC, animated: true, completion: nil)
+    }
+    
+    func showResetAlert() {
+        let alertVC = UIAlertController(title: "¿Borrar datos de este plato?",
+                                        message: nil,
+                                        preferredStyle: .actionSheet)
+        let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
+        let deleteAction = UIAlertAction(title: "Borrar", style: .destructive) { [weak self] (action) in
+            self?.presenter.resetDishSelected()
+        }
+        alertVC.addAction(deleteAction)
+        alertVC.addAction(cancelAction)
         present(alertVC, animated: true, completion: nil)
     }
     

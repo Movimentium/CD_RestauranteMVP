@@ -50,6 +50,13 @@ class RestauranteDB {
         saveContext()
     }
     
+    func resetDishSelected() {
+        dishSelected.lastEaten = nil
+        dishSelected.rating = 0
+        dishSelected.timesEaten = 0
+        saveContext()
+    }
+    
     func dishInfo(forId id:Int) -> DishInfo {
         let d = DishInfo()
         let fr = NSFetchRequest<NSFetchRequestResult>(entityName: "\(Dish.self)")
