@@ -7,3 +7,29 @@
 //
 
 import Foundation
+
+protocol RestauranteViewInterface: AnyObject {
+    func updateDish(withImageName imageName:String)
+}
+
+class RestaurantePresenter {
+    private let db = RestauranteDB.single
+    weak var viewInterface: RestauranteViewInterface?
+    
+    var numOfDishes: Int {
+        return db.numOfDishes
+    }
+    
+    func dishName(at i:Int) -> String {
+        return db.dishName(at: i)
+    }
+    
+    func didSelect(dishIndex i:Int) {
+        
+    }
+    
+    func dishImageName(at i:Int) -> String {
+        return "TODO"
+    }
+    
+}

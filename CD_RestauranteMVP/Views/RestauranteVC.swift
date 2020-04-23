@@ -8,25 +8,59 @@
 
 import UIKit
 
-class RestauranteVC: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        // BORRAR
-        let _ = RestauranteDB.single
-    }
+class RestauranteVC: UIViewController, RestauranteViewInterface, UIPickerViewDataSource, UIPickerViewDelegate {
+   
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBOutlet weak var imgVw: UIImageView!
+    @IBOutlet weak var picker: UIPickerView!
+    @IBOutlet weak var lblName: UILabel!
+    @IBOutlet weak var lblRating: UILabel!
+    @IBOutlet weak var lblEaten: UILabel!
+    @IBOutlet weak var lblLastEaten: UILabel!
+    @IBOutlet weak var lblIsFavourite: UILabel!
+    private let presenter = RestaurantePresenter()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+//        presenter.viewInterface =
+        picker.dataSource = self
+        picker.delegate = self
+        pickerView(picker, didSelectRow: 0, inComponent: 0)
     }
-    */
+    
+    // MARK: - IBActions
+    
+    @IBAction func onRequestBtn() {
+    }
+    
+    @IBAction func onRateBtn() {
+    }
+    
+    // MARK: - RestauranteViewInterface
+    
+    func updateDish(withImageName imageName: String) {
+        
+    }
+    
+    // MARK: - UIPickerViewDataSource
 
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return presenter.numOfDishes
+    }
+ 
+    // MARK: - UIPickerViewDelegate
+
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return presenter.dishName(at: row)
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        print("\(self.classForCoder) \(#function) row: \(row)")
+        presenter.didSelect(dishIndex: row)
+    }
 }

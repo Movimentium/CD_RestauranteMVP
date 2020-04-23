@@ -12,24 +12,69 @@ class RestauranteDB {
     
     static let single = RestauranteDB()
     private init() {
-        print("\(RestauranteDB.self) \(#function)")
-        
+        if numOfDishes == 0 {
+            setupDB()
+        }
+        print("\(RestauranteDB.self) \(#function) numOfDishes: \(numOfDishes)")
+    }
+    
+    var numOfDishes:Int {
         let fr = NSFetchRequest<NSFetchRequestResult>(entityName: "\(Dish.self)")
         do {
-            let numOfDishes:Int = try moctx.count(for: fr)
-            if numOfDishes == 0 {
-                setupDB()
-            }
+            return try moctx.count(for: fr)
         } catch {
             print("\(RestauranteDB.self) \(#function) ERROR")
             print(error.localizedDescription)
+            return -1
         }
+    }
+
+    private var dishSelected: Dish!
+    
+    private lazy var dishNames:[String]? = {
+        let fr = NSFetchRequest<NSFetchRequestResult>(entityName: "\(Dish.self)")
+        let sortDescr = NSSortDescriptor(key: "id", ascending: true)
+        fr.sortDescriptors = [sortDescr]
+        if let results:[Dish] = try? moctx.fetch(fr) as? [Dish] {
+            var names:[String] = []
+            results.forEach { names.append($0.name ?? "?") }
+            return names
+        } else  {
+            print("\(RestauranteDB.self) \(#function) ERROR")
+            return nil
+        }
+    }()
+    
+    func dishName(at i:Int) -> String {
+        if let names = dishNames, i < names.count {
+            return names[i]
+        }
+        return "?"
     }
     
     private func setupDB() {
+        print("\(RestauranteDB.self) \(#function)")
         
+        var arrDishAux:[DishFromPlist] = []
+        let sampleDataURL:URL = Bundle.main.url(forResource: "SampleData", withExtension: "plist")!
+        do {
+            let sampleData:Data = try Data(contentsOf: sampleDataURL)
+            arrDishAux = try PropertyListDecoder().decode([DishFromPlist].self, from: sampleData)
+        } catch  {
+            print("\(RestauranteDB.self) \(#function) ERROR")
+            print(error.localizedDescription)
+        }
+        var i:Int32 = 0
+        for dishAux in arrDishAux {
+            let dishEntity = NSEntityDescription.entity(forEntityName: "\(Dish.self)", in: moctx)!
+            let dish = Dish(entity: dishEntity, insertInto: moctx)
+            dish.copyFromDishModel(dishAux)
+            dish.id = i
+            i += 1
+        }
+        saveContext()
+        print("\(RestauranteDB.self) \(#function) numOfDishes: \(numOfDishes)")
     }
-    
     
     // MARK: - Core Data stack
     

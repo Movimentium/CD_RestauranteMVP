@@ -16,12 +16,12 @@ extension Dish {
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Dish> {
         return NSFetchRequest<Dish>(entityName: "Dish")
     }
-
+    
+    @NSManaged public var id: Int32
     @NSManaged public var imageName: String?
     @NSManaged public var name: String?
-    @NSManaged public var searchKey: String?
     @NSManaged public var rating: Double
     @NSManaged public var isFavorite: Bool
     @NSManaged public var timesEaten: Int32
-
+    @NSManaged public var lastEaten: Date?
 }
