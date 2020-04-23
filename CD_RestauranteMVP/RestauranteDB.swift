@@ -29,7 +29,26 @@ class RestauranteDB {
         }
     }
 
-    private var dishSelected: Dish!
+    private var dishSelected: Dish! {
+        didSet {print("\(RestauranteDB.self) \(#function)")}
+    }
+    
+    func dishSelectedInfo() -> DishInfo {
+        let d = DishInfo()
+        dishSelected.toDishInfo(d)
+        return d
+    }
+    
+    func dishEatenNow() {
+        dishSelected.timesEaten += 1
+        dishSelected.lastEaten = Date()
+        saveContext()
+    }
+    
+    func rateDishSelected(with value:Double) {
+        dishSelected.rating = value
+        saveContext()
+    }
     
     func dishInfo(forId id:Int) -> DishInfo {
         let d = DishInfo()

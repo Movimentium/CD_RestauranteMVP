@@ -29,19 +29,45 @@ class RestauranteVC: UIViewController, RestauranteViewInterface, UIPickerViewDat
     
     // MARK: - IBActions
     @IBAction func onRequestBtn() {
+        presenter.dishEatenNow()
     }
     
     @IBAction func onRateBtn() {
+        showRateAlert()
     }
+    
+
     
     // MARK: - RestauranteViewInterface
     func update(withDish dish: DishInfo) {
+        imgVw.image = UIImage(named: dish.imageName ?? "")
         lblName.text = dish.name
-        lblRating.text = "Valoración \(dish.rating)/5"
+        lblIsFavourite.text = (dish.isFavorite ? "*Favorito*" : " ")
+        updateEatingInfo(withDish: dish)
+        updateRating(with: dish.rating)
+    }
+    
+    func updateEatingInfo(withDish dish:DishInfo) {
         lblEaten.text = "Veces degustado: \(dish.timesEaten)"
         lblLastEaten.text = "Última degustación: \(presenter.strDate(fromDate: dish.lastEaten))"
-        lblIsFavourite.text = (dish.isFavorite ? "*Favorito*" : "")
-        imgVw.image = UIImage(named: dish.imageName ?? "")
+    }
+    
+    func updateRating(with value: Double) {
+        lblRating.text = "Valoración \(value)/5"
+    }
+    
+    func showRateAlert() {
+        let alertVC = UIAlertController(title: "Valora el plato", message: "De 0 a 5", preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
+        let rateAction = UIAlertAction(title: "Valorar", style: .default) { [weak alertVC, weak self] (action) in
+            self?.presenter.tryToRate(with: alertVC?.textFields?.first?.text ?? "-1")
+        }
+        alertVC.addAction(rateAction)
+        alertVC.addAction(cancelAction)
+        alertVC.addTextField { (textfield) in
+            textfield.keyboardType = .decimalPad
+        }
+        present(alertVC, animated: true, completion: nil)
     }
     
     // MARK: - UIPickerViewDataSource

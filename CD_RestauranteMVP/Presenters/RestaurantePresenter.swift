@@ -10,6 +10,9 @@ import Foundation
 
 protocol RestauranteViewInterface: AnyObject {
     func update(withDish dish:DishInfo)
+    func updateEatingInfo(withDish dish:DishInfo)
+    func updateRating(with value:Double)
+    func showRateAlert()
 }
 
 class RestaurantePresenter {
@@ -29,7 +32,23 @@ class RestaurantePresenter {
         viewInterface?.update(withDish: dishInfo)
     }
     
+    func dishEatenNow() {
+        db.dishEatenNow()
+        let dishInfo = db.dishSelectedInfo()
+        viewInterface?.updateEatingInfo(withDish: dishInfo)
+    }
  
+    func tryToRate(with strValue: String) {
+        let str = strValue.replacingOccurrences(of: ",", with: ".")
+        let aDouble = (str as NSString).doubleValue
+        print("\(RestaurantePresenter.self) \(#function) \(aDouble)")
+        if aDouble < 0.0 || aDouble > 5.0 {
+            viewInterface?.showRateAlert()
+        } else {
+            db.rateDishSelected(with: aDouble)
+            viewInterface?.updateRating(with: aDouble)
+        }
+    }
     
     func strDate(fromDate d:Date?) -> String {
         guard let date = d else {
