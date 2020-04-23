@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C1E21D124516280005A9079 /* Dish+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1E21CF24516280005A9079 /* Dish+CoreDataClass.swift */; };
+		0C1E21D224516280005A9079 /* Dish+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1E21D024516280005A9079 /* Dish+CoreDataProperties.swift */; };
+		0C1E21D424516334005A9079 /* RestauranteDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1E21D324516334005A9079 /* RestauranteDB.swift */; };
 		0C69026324515A6D00ECA3B4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C69026224515A6D00ECA3B4 /* LaunchScreen.storyboard */; };
 		0C69026524515AAB00ECA3B4 /* Restaurante.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C69026424515AAB00ECA3B4 /* Restaurante.storyboard */; };
 		0C69026724515AEE00ECA3B4 /* RestauranteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C69026624515AEE00ECA3B4 /* RestauranteVC.swift */; };
@@ -18,10 +21,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0C1E21CF24516280005A9079 /* Dish+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dish+CoreDataClass.swift"; sourceTree = "<group>"; };
+		0C1E21D024516280005A9079 /* Dish+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dish+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		0C1E21D324516334005A9079 /* RestauranteDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestauranteDB.swift; sourceTree = "<group>"; };
 		0C69026224515A6D00ECA3B4 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0C69026424515AAB00ECA3B4 /* Restaurante.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Restaurante.storyboard; sourceTree = "<group>"; };
 		0C69026624515AEE00ECA3B4 /* RestauranteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestauranteVC.swift; sourceTree = "<group>"; };
 		0C69026924515B2600ECA3B4 /* RestaurantePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantePresenter.swift; sourceTree = "<group>"; };
+		0C69026C24515F3E00ECA3B4 /* SampleData.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = SampleData.plist; sourceTree = "<group>"; };
 		0CD2EC64244D367500531C0D /* CD_RestauranteMVP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CD_RestauranteMVP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CD2EC67244D367500531C0D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0CD2EC69244D367500531C0D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -44,6 +51,9 @@
 		0C69026124515A5C00ECA3B4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				0C1E21CF24516280005A9079 /* Dish+CoreDataClass.swift */,
+				0C1E21D024516280005A9079 /* Dish+CoreDataProperties.swift */,
+				0C69026C24515F3E00ECA3B4 /* SampleData.plist */,
 				0CD2EC70244D367500531C0D /* CD_RestauranteMVP.xcdatamodeld */,
 			);
 			path = Model;
@@ -88,6 +98,7 @@
 			children = (
 				0CD2EC67244D367500531C0D /* AppDelegate.swift */,
 				0CD2EC69244D367500531C0D /* SceneDelegate.swift */,
+				0C1E21D324516334005A9079 /* RestauranteDB.swift */,
 				0C69026124515A5C00ECA3B4 /* Model */,
 				0C69026824515AFA00ECA3B4 /* Views */,
 				0C69026B24515B2B00ECA3B4 /* Presenters */,
@@ -169,7 +180,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C69026A24515B2600ECA3B4 /* RestaurantePresenter.swift in Sources */,
+				0C1E21D124516280005A9079 /* Dish+CoreDataClass.swift in Sources */,
+				0C1E21D424516334005A9079 /* RestauranteDB.swift in Sources */,
 				0CD2EC72244D367500531C0D /* CD_RestauranteMVP.xcdatamodeld in Sources */,
+				0C1E21D224516280005A9079 /* Dish+CoreDataProperties.swift in Sources */,
 				0C69026724515AEE00ECA3B4 /* RestauranteVC.swift in Sources */,
 				0CD2EC68244D367500531C0D /* AppDelegate.swift in Sources */,
 				0CD2EC6A244D367500531C0D /* SceneDelegate.swift in Sources */,
